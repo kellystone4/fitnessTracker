@@ -5,6 +5,7 @@
 
 ![alttext](assets/giphy.gif)
 
+
 # Fitness Tracker 
 
 </u>
@@ -40,6 +41,9 @@ Within this project, I included:
 
 
 <br>
+
+
+![img](assets/fitnesstracker.png)
 
 <u>
 
