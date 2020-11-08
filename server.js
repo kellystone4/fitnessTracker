@@ -1,69 +1,67 @@
+// Dependencies
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
-const apiRoutes = require("./routes/apiRoutes");
-const htmlRoutes = require("./routes/htmlRoutes");
+const path = require("path")
+
 
 const PORT = process.env.PORT || 3000;
 
-const db = require("./models");
-
 const app = express();
 
+// Middleware
 app.use(logger("dev"));
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 app.use(express.static("public"));
-apiRoutes(app);
-// htmlRoutes(app);
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
+// routes
 
 
-// app.get("/notes", (req, res) => {
-//   db.Note.find({})
-//     .then(dbNote => {
-//       res.json(dbNote);
-//     })
-//     .catch(err => {
-//       res.json(err);
-//     });
-// });
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/glacial-inlet',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  }
+);
 
-// app.get("/user", (req, res) => {
-//   db.User.find({})
-//     .then(dbUser => {
-//       res.json(dbUser);
-//     })
-//     .catch(err => {
-//       res.json(err);
-//     });
-// });
+app.use(require("./routes/api.js"));
+app.use(require("./routes/html.js"));
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
 
-// app.post("/submit", ({ body }, res) => {
-//   db.Note.create(body)
-//     .then(({ _id }) => db.User.findOneAndUpdate({}, { $push: { notes: _id } }, { new: true }))
-//     .then(dbUser => {
-//       res.json(dbUser);
-//     })
-//     .catch(err => {
-//       res.json(err);
-//     });
-// });
-
-// app.get("/populateduser", (req, res) => {
-//   db.User.find({})
-//     .populate("notes")
-//     .then(dbUser => {
-//       res.json(dbUser);
-//     })
-//     .catch(err => {
-//       res.json(err);
-//     });
-// });
-
+// Listen 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
 });
+
+// const express = require("express");
+// const logger = require("morgan");
+// const mongoose = require("mongoose");
+
+// const apiRoutes = require("./routes/apiRoutes");
+// const htmlRoutes = require("./routes/htmlRoutes");
+
+// const PORT = process.env.PORT || 3000;
+
+// const db = require("./models");
+
+// const app = express();
+
+// app.use(logger("dev"));
+
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
+
+// app.use(express.static("public"));
+// apiRoutes(app);
+// htmlRoutes(app);
+
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
+
+
+// app.listen(PORT, () => {
+//   console.log(`App running on port ${PORT}!`);
+// });
