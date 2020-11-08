@@ -78,6 +78,6 @@ Within this project, I included:
 <br>
 
 ## Deployed Link:
-- [Link to Updated Portfolio Site](https://kellystone4.github.io/fitnessTracker/)
+- [Link to Github Site](https://kellystone4.github.io/fitnessTracker/)
 
-- [Link to Updated Portfolio Site](https://guarded-sands-28138.herokuapp.com/)
+- [Link to Heroku Site](https://guarded-sands-28138.herokuapp.com/)
